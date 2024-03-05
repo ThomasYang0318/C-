@@ -6,7 +6,7 @@ int main(){
     cin.getline(arr, 100);
     
     int state = 0;
-    for(int i = 0; i < 100 && state >= 0; i++){
+    for(int i = 0; i < 100 && arr[i] != '\0' && state >= 0; i++){
         if(arr[i] == '(')
             state += 1;
         else if (arr[i] == ')')

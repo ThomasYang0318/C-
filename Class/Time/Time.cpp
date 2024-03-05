@@ -1,4 +1,4 @@
-#include "time.h"
+#include "Time.h"
 #include <iostream>
 
 using namespace std;
@@ -12,7 +12,7 @@ Time::Time(int h, int m, int s){
 
 void Time::Increment(){
     sec++;
-    if(sec==60){
+    if(sec == 60){
         sec = 0;
         min++;
         if(min == 60){
