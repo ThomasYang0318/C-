@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+void Func1(int a, int *b, int &c){
+    a = 30;
+    *b = 999; 
+    cout << a << ", " << *b << endl;
+}
+
+int main(){
+    int a = 9;
+    int &b = a;        //b是a的暱稱
+    
+    cout << b << endl;
+    return 0;
+}

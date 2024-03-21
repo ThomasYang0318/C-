@@ -3,11 +3,28 @@
 
 using namespace std;
 
-Time::Time(int h, int m, int s){
+int Time::count = 0;
+
+void Time::PrintCount() {
+    cout << "#Timer = "<< count << endl;
+}
+
+Time::~Time(){
+    cout << "Bye~~ I am leaving~ ";
+    PrintTime();
+    cout << endl;
+    count--;
+}
+
+Time::Time(int h, int m, int s) : i(0){
     hrs = min = sec = 0;  //不會覆蓋輸入值
     SetHrs(h);
     SetMin(m);
     SetSec(s);
+    cout << "Hi~ I am coming ~ ";
+    PrintTime();
+    cout <<endl;
+    count++;
 }
 
 void Time::Increment(){
@@ -46,6 +63,6 @@ void Time::SetTime(int h, int m, int s){
     SetSec(s);
 }
 
-void Time::PrintTime(){
+void Time::PrintTime() {
     cout << hrs << " : " << min << " : " << sec << endl;
 }
