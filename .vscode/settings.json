@@ -2,6 +2,11 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "ratio": "cpp"
-    }
+        "ratio": "cpp",
+        "string": "cpp",
+        "__bit_reference": "cpp",
+        "bitset": "cpp",
+        "unordered_map": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

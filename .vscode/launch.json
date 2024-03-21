@@ -6,13 +6,29 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.out",
-            "args": ["arg1", "arg2"],
+            "args": [
+                "arg1",
+                "arg2"
+            ],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": true,
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "C/C++: custom build and link task"
+        },
+        {
+            "name": "C/C++: clang++ 建置及偵錯使用中的檔案",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang++ build active file"
         }
     ]
 }

@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     int money = 0;
-    int state;
+    int state = 0;
     string character;
     string style;
     //char character[3];
