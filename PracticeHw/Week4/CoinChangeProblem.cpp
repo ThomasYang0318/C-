@@ -21,12 +21,3 @@ int main()
         cout << "There are "<< arr[price] << " ways can change." << endl;
     }	
 }
-/*
-int main(){
-    while(cin > 0)
-    int coin = 0;
-    cout << "What's your coin: ";
-    cin >> coin;
-    cout << "There are "<< change(coin) << " ways can change.";
-}
-*/

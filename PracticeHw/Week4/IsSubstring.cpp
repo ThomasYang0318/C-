@@ -1,25 +1,30 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main(){
-    char s1[100];
-    char s2[100];
-    cin >> s1;
-    cin >> s2;
+    string s1;
+    string s2;
+    while(true){
+        cin >> s1;
+        cin >> s2;
 
-    int i = 0;
-    int j = 0;
-    int count = 0;
-    for(i = 0; i < 100 && s1[i] != '\0'; i++){
-        for(; j < 100 && s2[j] != '\0'; j++){
-            if(s1[i] == s2[j]){
+        if(s1 == "0" && s2 == "0")
+            break;
+        int count = 0;
+        int a = 0;
+        for(int i = 0; i < s2.size(); i++){
+            if(s1[a] == s2[i]){
                 count++;
+                a++;
+            }
+            if(s1.size() == a){
                 break;
             }
         }
+        if(s1.size() == count)
+            cout << "true" << endl;
+        else 
+            cout << "false"<< endl;
     }
-    if(i == count)
-        cout << "true";
-    else 
-        cout << "false";
 }
