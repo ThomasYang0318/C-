@@ -113,14 +113,3 @@ void matrix::divide(matrix* A, matrix* B){
         mul.multiple(&adj, B);
     } 
 }
-//static sub(matrix*, matrix*){
-
-//}
-
-//static multiple(matrix*, matrix*){
-
-//}
-
-//static divide(matrix*, matrix*){
-
-//}
