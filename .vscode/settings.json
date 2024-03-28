@@ -6,7 +6,16 @@
         "string": "cpp",
         "__bit_reference": "cpp",
         "bitset": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "istream": "cpp",
+        "locale": "cpp",
+        "__hash_table": "cpp",
+        "array": "cpp",
+        "charconv": "cpp",
+        "type_traits": "cpp",
+        "limits": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
