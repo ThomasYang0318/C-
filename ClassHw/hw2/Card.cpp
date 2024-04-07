@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>    // std::shuffle
 #include <random>       // std::default_random_engine
+#include <vector>
 
 using namespace std;
 

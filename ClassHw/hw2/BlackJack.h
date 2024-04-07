@@ -3,6 +3,8 @@
 
 #include "Card.h"
 
+#include <vector>
+#include <limits>
 #include <string>
 using namespace std;
 

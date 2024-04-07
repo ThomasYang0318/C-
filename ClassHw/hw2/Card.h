@@ -3,6 +3,8 @@
 
 #define NUM_OF_CARD 52
 //#include "BlackJack.h"
+#include <vector>
+#include <limits>
 #include <string>
 using namespace std;
 

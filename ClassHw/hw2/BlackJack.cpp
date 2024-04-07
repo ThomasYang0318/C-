@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip> //對齊文字用
 #include <algorithm>
+#include <vector>
 #define HIT 1
 #define STAND 2
 #define D_S 3   // Double if allowed, stand otherwise.

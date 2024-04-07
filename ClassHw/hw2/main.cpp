@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Card.h"
 #include "BlackJack.h"
+#include <vector>
 using namespace std;
 
 int main() {
