@@ -107,12 +107,12 @@ void PokerCard::suit5(int suit, int count){
 };
 
 /*
-cout << endl;
-                cout << "    *    " ;
-                cout << "   ***  " ;
-                cout << "  *****    " ;
-                cout << "   ***   " ;
-                cout << "   ***   ";
+cout case 1:
+        cout << "    **    " << endl
+             << " ** ** **  " << endl
+             << " ** *  ** " << endl
+             << "    *    " << endl
+             << "   ***   " << endl;
         }
         break;
     case 2:

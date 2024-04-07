@@ -1,3 +1,4 @@
+#include "BlackJack.h"
 #include "Card.h"
 #include <iostream>
 #include <algorithm>    // std::shuffle
@@ -5,49 +6,109 @@
 
 using namespace std;
 
-Card::Card(){}
-
-void Card::SetId(int i){
-    id = i + 1;
+Card::Card(int cardId) : id(cardId), state(true){
+    num = cardId % 13 + 1;  //1 ~ 13
+    suit = cardId / 13 + 1; //1 ~ 4
 }
 
-void Card::PrintId(){
-    cout << "Id: " << id << " ";
+int Card::GetNum(){
+    return num;
 }
 
-void Card::SetNum(int n){
-    num = n % 13;
+int Card::GetSuit(){
+    int cardSuit[4] = {1, 2, 3, 4};
+    return cardSuit[suit];
 }
 
-void Card::PrintNum(){
-    cout << "Num: " << cardNum[num] << " ";
+bool Card::GetState(){
+    return state;
 }
 
-void Card::SetSuit(int n){
-    suit = n / 13;
+
+void Card::Flop(){
+    state = !state;
 }
 
-void Card::PrintSuit(){
-    cout << "Suit: " << cardSuit[suit] << " ";
+vector<string> Card::PrintCard() const{
+    vector<string> card(9);
+    if(state == 1){
+        string cardNum[13] = {" A", " 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9", "10", " J", " Q", " K"};
+        card[0] = "---------------";
+        card[1] = "|" + cardNum[num - 1] + "           |";
+        switch(suit){
+        case 1:                     
+            card[2] = "|     ***     |";
+            card[3] = "|  ** *** **  |";
+            card[4] = "|  **  *  **  |";
+            card[5] = "|      *      |";
+            card[6] = "|     ***     |";
+            break;
+        case 2:
+            card[2] = "|      *      |";
+            card[3] = "|     ***     |";
+            card[4] = "|    *****    |";
+            card[5] = "|     ***     |";
+            card[6] = "|      *      |";
+            break;
+        case 3:
+            card[2] = "|    *   *    |";
+            card[3] = "|   *** ***   |";
+            card[4] = "|    *****    |";
+            card[5] = "|     ***     |";
+            card[6] = "|      *      |";
+            break;
+        case 4:
+            card[2] = "|      *      |";
+            card[3] = "|    *****    |";
+            card[4] = "|   *** ***   |";
+            card[5] = "|      *      |";
+            card[6] = "|     ***     |";
+            break;
+        }
+        card[7] = "|           " + cardNum[num - 1] + "|";
+        card[8] = "---------------";
+    }
+    else{
+        card[0] = "---------------";
+        card[1] = "|             |";
+        card[2] = "|             |";
+        card[3] = "|             |";
+        card[4] = "|             |";
+        card[5] = "|             |";
+        card[6] = "|             |";
+        card[7] = "|             |";
+        card[8] = "---------------";
+    }
+    return card;
 }
 
-Deck::Deck(){}
 
-void Deck::Shuffle(){
+Deck::Deck(){
+    // Initialize card IDs
+    vector<int> cardID;
+    for (int i = 0; i < NUM_OF_CARD; i++) {
+        cardID.push_back(i);
+    }
+
+    // Create cards and add them to the deck
+    for (int id : cardID) {
+        deck.push_back(Card(id));
+    }
+    
+}
+
+const vector<Card>& Deck::getCards() const {
+    return deck;
+}
+
+void Deck::Shuffle(Deck &d){
     random_device rd;
     mt19937 g(rd());
-    shuffle(card, card + 52, g);
+    shuffle(deck.begin(), deck.end(), g);
 }
 
-void Deck::Deal(int p){
-    static int remain = 51;
-    for(int i = 1; i <= p && remain >= 0; i++){
-        cout << "Player" << i << ":"<< endl;
-        card[remain].PrintNum();
-        card[remain].PrintSuit();
-        card[remain].PrintId();
-        cout << " remain: " << remain;
-        remain--;
-        cout << endl << "-----------------------------------"<< endl;
-    }
+Card Deck::Deal() const{
+    Card dealCard = deck.back();
+    deck.pop_back();
+    return dealCard;
 }
