@@ -34,6 +34,7 @@ int main() {
             break;
         }
     }
+
     cout << "--------------------Game Start--------------------" << endl << endl;
     cout << "You are Player1" << endl << endl;
     vector<Player> player(player_num);
@@ -243,5 +244,10 @@ int main() {
     }
 
     game.Rank(player);
+    cout << endl << "-------------------Thanks for playing--------------------" << endl << endl;
+    cout << "Enter any key to exit the game." << endl;//按任意鍵離開遊戲
+    string s;
+    cin >> s;
+    
     return 0;
 }

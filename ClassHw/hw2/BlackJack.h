@@ -22,6 +22,7 @@ public:
     int CalculateCard();
     void Bust();
     bool GetBust();
+    int GetHandNum();
 
     void CleanCard();
 };

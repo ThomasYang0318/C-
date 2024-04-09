@@ -65,6 +65,10 @@ bool Hand::GetBust(){
     return bust;
 }
 
+int Hand::GetHandNum(){
+    return cards.size();
+}
+
 void Hand::CleanCard(){
     cards.clear();
 }
@@ -106,7 +110,7 @@ int Player::GetBet(){
     return bet;
 }
 int Player::GetHandNum(){
-    return hand.size();
+    return cards.size();
 }
 
 void Player::CleanHand(){
@@ -387,20 +391,6 @@ bool Game::IsSpecialCombination(Player& player) {
 void Game::Odds(vector<Player>& player){
     SortPlayer(player);
 
-    for(int i = 1; i < player.size(); i++){
-        if(player[i].GetHandNum() == 5){
-            if(player[i].CalculateCard() <= 21){
-                player[0].ChangeMoney(-3 * player[i].GetBet());
-                player[i].ChangeMoney(3 * player[i].GetBet());
-            }
-        }
-        else if (IsSpecialCombination(player[i])) {
-            if(player[i].CalculateCard() <= 21){
-                player[0].ChangeMoney(-3 * player[i].GetBet());
-                player[i].ChangeMoney(3 * player[i].GetBet());
-            }
-        }
-    }
     if(player[0].CalculateCard () > 21){
         for(int i = 1; i < player.size(); i++){
             if(player[i].CalculateCard() <= 21){
@@ -411,16 +401,18 @@ void Game::Odds(vector<Player>& player){
     }
     else{
         for(int i = 1; i < player.size(); i++){
-            if(player[i].GetHandNum() == 5){
+            if(player[i].GetHandNum() >= 5 ){
                 if(player[i].CalculateCard() <= 21){
                     player[0].ChangeMoney(-3 * player[i].GetBet());
                     player[i].ChangeMoney(3 * player[i].GetBet());
+                    continue;
                 }
             }
             else if (IsSpecialCombination(player[i])) {
                 if(player[i].CalculateCard() <= 21){
                     player[0].ChangeMoney(-3 * player[i].GetBet());
                     player[i].ChangeMoney(3 * player[i].GetBet());
+                    continue;
                 }
             }
             else if(player[i].CalculateCard() > 21){
