@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iomanip> //對齊文字用
 #include <algorithm>
-#include <vector>
+
 #define HIT 1
 #define STAND 2
 #define D_S 3   // Double if allowed, stand otherwise.
@@ -13,6 +13,7 @@ using namespace std;
 
 Hand::Hand() : Card(0){
     bust = 0;
+    AceNum = 0;
 }
 
 void Hand::AddCard(const Deck& deck){
@@ -34,20 +35,24 @@ void Hand::ShowCard(){
 int Hand::CalculateCard(){
     int sum = 0;
     for(int i = 0; i < cards.size(); i++){
+        if(cards[i].GetNum() == 1){
+            AceNum++;
+        } 
+    }
+    for(int i = 0; i < cards.size(); i++){
         if (cards[i].GetNum() == 11 || cards[i].GetNum() == 12 || cards[i].GetNum() == 13){
             sum += 10;
         }
         else if (cards[i].GetNum() == 1){
-            if (sum + 11 > 21){
-                sum += 1;
-            }
-            else{
-                sum += 11;
-            }
+            sum += 11;
         }
         else{
             sum += cards[i].GetNum();
         }
+    }
+    while (sum > 21 && AceNum > 0){
+        sum -= 10;
+        AceNum--;
     }
     return sum;
 }
@@ -382,6 +387,20 @@ bool Game::IsSpecialCombination(Player& player) {
 void Game::Odds(vector<Player>& player){
     SortPlayer(player);
 
+    for(int i = 1; i < player.size(); i++){
+        if(player[i].GetHandNum() == 5){
+            if(player[i].CalculateCard() <= 21){
+                player[0].ChangeMoney(-3 * player[i].GetBet());
+                player[i].ChangeMoney(3 * player[i].GetBet());
+            }
+        }
+        else if (IsSpecialCombination(player[i])) {
+            if(player[i].CalculateCard() <= 21){
+                player[0].ChangeMoney(-3 * player[i].GetBet());
+                player[i].ChangeMoney(3 * player[i].GetBet());
+            }
+        }
+    }
     if(player[0].CalculateCard () > 21){
         for(int i = 1; i < player.size(); i++){
             if(player[i].CalculateCard() <= 21){
@@ -409,7 +428,7 @@ void Game::Odds(vector<Player>& player){
                 player[i].ChangeMoney(-player[i].GetBet());
             }
             else if(player[i].CalculateCard() <= 21){
-                if(player[0].CalculateCard() > player[i].CalculateCard()){
+                if(player[0].CalculateCard() >= player[i].CalculateCard()){
                     player[0].ChangeMoney(player[i].GetBet());
                     player[i].ChangeMoney(-player[i].GetBet());
                 }

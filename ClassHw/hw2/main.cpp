@@ -6,9 +6,6 @@ using namespace std;
 
 int main() {
     Game game;
-    Deck deck;
-    const vector<Card>& cards = deck.getCards();
-    deck.Shuffle(deck);
 
     cout << "--------------------Welcome to BlackJack Game--------------------" << endl << endl;
     int round = 0;
@@ -42,6 +39,9 @@ int main() {
     vector<Player> player(player_num);
 
     for(int roundNum = 1; roundNum <= round && player[0].GetName() == 1 && player.size() >= 2; roundNum++){
+        Deck deck;
+        const vector<Card>& cards = deck.getCards();
+        deck.Shuffle(deck);
         game.SortPlayer1(player);
         cout << "--------------------------Round" << roundNum << "--------------------------" << endl;
         vector<int> startMoney;
@@ -115,6 +115,7 @@ int main() {
                         cout << "Player " << i + 1 << " doesn't want to draw another card." << endl;//Player 不要補牌
                     }
                     else{
+                        cout << "Player " << i + 1 << " wants to draw another card." << endl; //Player 要補牌
                         player[i].AddCard(deck);
                         game.ShowTable(player);
                     }
