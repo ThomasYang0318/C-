@@ -144,6 +144,13 @@ int main() {
         }
         else if(player[0].GetBanker() != 1){
             if(game.Surrender(bet, player) != 1){
+                for(int i = 0; i < player.size(); i++){
+                    if(player[i].GetBanker() == 1){
+                        if(player[i].GetCardNum(0) == 1){
+                            game.InSurance(player);
+                        }
+                    }
+                }  
                 if(player[0].CalculateCard() == 11){
                     if(game.Double(deck, player) == 0){
                         game.AskAddCard(deck, player);

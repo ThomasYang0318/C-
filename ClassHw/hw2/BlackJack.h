@@ -10,7 +10,6 @@ using namespace std;
 
 class Hand : public Card{
     bool bust;
-    int AceNum;
 public:
     Hand();
     vector<Card> cards;
@@ -22,7 +21,6 @@ public:
     int CalculateCard();
     void Bust();
     bool GetBust();
-    int GetHandNum();
 
     void CleanCard();
 };

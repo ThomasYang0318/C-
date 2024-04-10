@@ -10,7 +10,6 @@ using namespace std;
 
 Hand::Hand() : Card(0){
     bust = 0;
-    AceNum = 0;
 }
 
 void Hand::AddCard(const Deck& deck){
@@ -31,6 +30,7 @@ void Hand::ShowCard(){
 
 int Hand::CalculateCard(){
     int sum = 0;
+    int AceNum = 0;
     for(int i = 0; i < cards.size(); i++){
         if(cards[i].GetNum() == 1){
             AceNum++;
@@ -60,10 +60,6 @@ void Hand::Bust(){
 
 bool Hand::GetBust(){
     return bust;
-}
-
-int Hand::GetHandNum(){
-    return cards.size();
 }
 
 void Hand::CleanCard(){
@@ -106,6 +102,7 @@ void Player::SetBet(int b){
 int Player::GetBet(){
     return bet;
 }
+
 int Player::GetHandNum(){
     return cards.size();
 }
@@ -202,7 +199,7 @@ void Game::AskAddCard(Deck& deck, vector<Player>& player){
     while(state){
         cout << "------------------------------------------------------------------------"<<endl;
         ShowTable(player);
-        if(player[0].CalculateCard() < 21 && player[0].GetHandNum() < 5){
+        if(player[0].CalculateCard() < 21 && player[0].GetHandNum() < 5 ){
             cout << "Would you like to add a card?" << endl//請問您要補牌嗎？
                  << "0:No" << endl
                  << "1:Yes" << endl;
@@ -342,12 +339,19 @@ void Game::InSurance(vector<Player>& player){
         cin >> state;
     }
     if(state == 1){
-        if(player[0].GetCardNum(0) == 1 && player[0].GetCardNum(1) == 10 || player[0].GetCardNum(1) == 11 || player[0].GetCardNum(1) == 12 || player[0].GetCardNum(1) == 13){
-            player[0].ChangeMoney(-player[0].GetBet() * 2);
-            player[1].ChangeMoney(player[0].GetBet() * 2);
+        for(int i = 1; i < player.size(); i++){
+            if(player[i].GetName() == 1){
+                player[0].ChangeMoney(player[0].GetBet() / 2);
+                player[i].ChangeMoney(-player[0].GetBet() / 2);
+            }
         }
-        else{
-            player[1].ChangeMoney(player[0].GetBet() / 2);
+        if(player[0].GetCardNum(0) == 1 && (player[0].GetCardNum(1) == 10 || player[0].GetCardNum(1) == 11 || player[0].GetCardNum(1) == 12 || player[0].GetCardNum(1) == 13)){
+            for(int i = 1; i < player.size(); i++){
+                if(player[i].GetName() == 1){
+                    player[i].ChangeMoney(player[i].GetBet());
+                    player[0].ChangeMoney(-player[0].GetBet());
+                }
+            }
         }
     }
 }
