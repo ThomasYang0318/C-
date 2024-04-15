@@ -49,12 +49,6 @@ public:
     void EndPrint();
 };
 
-
-class Banker : private Player{
-public:
-    Banker();
-};
-
 class Game{
 
 public:
@@ -66,7 +60,7 @@ public:
     void ShowTable(vector<Player>& player);
     void ShowBankerTable(vector<Player>& player);
     void ShowEndTable(vector<Player>& player);
-    void SortPlayer(vector<Player>& player);
+    void SortPlayer(vector<Player>& player);    //將莊家移到最前面
     void SortPlayer1(vector<Player>& player);   //將player1移到第0個
     void InSurance(vector<Player>& player);
     bool Double(Deck& deck, vector<Player>& player);

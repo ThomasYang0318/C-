@@ -56,7 +56,9 @@
         "vector": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "deque": "cpp",
+        "stack": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

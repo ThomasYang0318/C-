@@ -17,8 +17,7 @@ int Card::GetNum(){
 }
 
 int Card::GetSuit(){
-    int cardSuit[4] = {1, 2, 3, 4};
-    return cardSuit[suit];
+    return suit;
 }
 
 bool Card::GetState(){

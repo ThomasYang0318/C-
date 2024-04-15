@@ -1,7 +1,7 @@
 #include <iostream>
 //error 1
 Class SuperStar{//error 2
-    int id = 1;//error 3
+    int id = 1, age = 1;//error 3
     //error 4
     void Show();//error 4,error 5
     int getID(){return id;}//error 4

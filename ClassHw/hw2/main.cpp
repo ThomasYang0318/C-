@@ -35,8 +35,9 @@ int main() {
         }
     }
 
-    cout << "--------------------Game Start--------------------" << endl << endl;
+    cout << endl << "--------------------Game Start--------------------" << endl << endl;
     cout << "You are Player1" << endl << endl;
+    cout << "Other players are computer players" << endl << endl;
     vector<Player> player(player_num);
 
     for(int roundNum = 1; roundNum <= round && player[0].GetName() == 1 && player.size() >= 2; roundNum++){
@@ -85,7 +86,7 @@ int main() {
                         swap(player[j], player[j + 1]);
                 }
             }
-            player[0].BeBanker();
+            player[player.size() - 1].BeBanker();
         }
 
         // 發牌給玩家和莊家2
@@ -110,7 +111,7 @@ int main() {
                     while (player[i].CalculateCard() <= 11) {
                         cout << "Player " << i + 1 << " wants to draw another card." << endl; //Player 要補牌
                         player[i].AddCard(deck);
-                        game.ShowTable(player);
+                        game.ShowBankerTable(player);
                     }
                     if(player[i].CalculateCard() >= 17){
                         cout << "Player " << i + 1 << " doesn't want to draw another card." << endl;//Player 不要補牌
@@ -118,7 +119,7 @@ int main() {
                     else{
                         cout << "Player " << i + 1 << " wants to draw another card." << endl; //Player 要補牌
                         player[i].AddCard(deck);
-                        game.ShowTable(player);
+                        game.ShowBankerTable(player);
                     }
                 }
             }
@@ -238,12 +239,20 @@ int main() {
                     cout << "Player1 is bankrupt!!!" << endl; //Player1破產!!!
                     cout << "Player1 has been kicked out of the game, the game is over." << endl;//Player1被踢出遊戲，遊戲結束
                     game.Rank(player);
+                    cout << endl << "-------------------Thanks for playing--------------------" << endl << endl;
+                    cout << "Enter any key to exit the game." << endl;//按任意鍵離開遊戲
+                    string s;
+                    cin >> s;
                     return 0;
                 }
                 else if(player[i].GetMoney() > 0 && player[i].GetMoney() < 100){
                     cout << "Player1 does not have enough remaining wager to meet the minimum bet for the next round" << endl; //Player1剩餘賭金不夠下局底注
                     cout << "Player1 has been kicked out of the game, the game is over." << endl;//Player1被踢出遊戲，遊戲結束
                     game.Rank(player);
+                    cout << endl << "-------------------Thanks for playing--------------------" << endl << endl;
+                    cout << "Enter any key to exit the game." << endl;//按任意鍵離開遊戲
+                    string s;
+                    cin >> s;
                     return 0;
                 }
             }

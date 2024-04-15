@@ -154,10 +154,6 @@ void Player::EndPrint(){
     Hand::ShowCard();
 }
 
-Banker::Banker() : Player(){
-
-}
-
 Game::Game(){}
 
 void Game::ChooseBanker(int p ,vector<Player>& player){
@@ -199,7 +195,7 @@ void Game::AskAddCard(Deck& deck, vector<Player>& player){
     while(state){
         cout << "------------------------------------------------------------------------"<<endl;
         ShowTable(player);
-        if(player[0].CalculateCard() < 21 && player[0].GetHandNum() < 5 ){
+        if(player[0].CalculateCard() < 21){
             cout << "Would you like to add a card?" << endl//請問您要補牌嗎？
                  << "0:No" << endl
                  << "1:Yes" << endl;
@@ -223,6 +219,9 @@ void Game::AskAddCard(Deck& deck, vector<Player>& player){
             cout << "<Player1> Bust, this round ends." << endl;//<Player1> 爆牌，此回結束
             state = 0;
         }
+        else{
+            state = 0;
+        }
     }
 }
 
@@ -232,7 +231,7 @@ void Game::AskBankerAddCard(Deck& deck, vector<Player>& player){
     while(state){
         cout << "------------------------------------------------------------------------------"<<endl;
         ShowBankerTable(player);
-        if(player[0].CalculateCard() < 21 && player[0].GetHandNum() < 5){
+        if(player[0].CalculateCard() < 21){
             cout << "Would you like to add a card?" << endl //請問莊家要補牌嗎?
                  << "0:No" << endl
                  << "1:Yes" << endl;
@@ -254,6 +253,9 @@ void Game::AskBankerAddCard(Deck& deck, vector<Player>& player){
         }
         else if(player[0].CalculateCard() > 21){
             cout << "<Banker> Bust, this round ends." << endl;//<Banker> 爆牌，此回結束
+            state = 0;
+        }
+        else{
             state = 0;
         }
     }
@@ -394,7 +396,19 @@ void Game::Odds(vector<Player>& player){
 
     if(player[0].CalculateCard () > 21){
         for(int i = 1; i < player.size(); i++){
-            if(player[i].CalculateCard() <= 21){
+            if(player[i].GetHandNum() >= 5 ){
+                if(player[i].CalculateCard() <= 21){
+                    player[0].ChangeMoney(-3 * player[i].GetBet());
+                    player[i].ChangeMoney(3 * player[i].GetBet());
+                    continue;
+                }
+            }
+            else if (IsSpecialCombination(player[i])) {
+                player[0].ChangeMoney(-3 * player[i].GetBet());
+                player[i].ChangeMoney(3 * player[i].GetBet());
+                continue;
+            }
+            else if(player[i].CalculateCard() <= 21){
                 player[0].ChangeMoney(- player[i].GetBet());
                 player[i].ChangeMoney(player[i].GetBet());
             }
@@ -408,13 +422,16 @@ void Game::Odds(vector<Player>& player){
                     player[i].ChangeMoney(3 * player[i].GetBet());
                     continue;
                 }
-            }
-            else if (IsSpecialCombination(player[i])) {
-                if(player[i].CalculateCard() <= 21){
-                    player[0].ChangeMoney(-3 * player[i].GetBet());
-                    player[i].ChangeMoney(3 * player[i].GetBet());
+                else{
+                    player[0].ChangeMoney(player[i].GetBet());
+                    player[i].ChangeMoney(-player[i].GetBet());
                     continue;
                 }
+            }
+            else if (IsSpecialCombination(player[i])) {
+                player[0].ChangeMoney(-3 * player[i].GetBet());
+                player[i].ChangeMoney(3 * player[i].GetBet());
+                continue;
             }
             else if(player[i].CalculateCard() > 21){
                 player[0].ChangeMoney(player[i].GetBet());
