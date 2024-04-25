@@ -49,8 +49,14 @@ void Stack::empty(){
 };
 
 void Stack::top(){
-    cout << "-----------------------" << endl
-         << "Top number is " << stackNum.back() << endl;
+    if(stackNum.empty()){
+        cout << "-----------------------" << endl
+             << "The stack is empty" << endl;
+    }
+    else{
+        cout << "-----------------------" << endl
+             << "Top number is " << stackNum.back() << endl;
+    }
 };
 
 void Stack::setNum(int n){
