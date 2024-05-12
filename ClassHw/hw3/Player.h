@@ -1,18 +1,22 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Map.h"
-#include "Box.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class Player{
-    int PlayerX, PlayerY;
-    int newPlayerX, newPlayerY;
-    int initialPlayerX, initialPlayerY;
+    int x, y;
 public:
-    Player(Map& map);
-    void move(Map&, int dx, int dy);
-    void push(int dx, int dy);
-    void PrintPlayer();
+    Player();
+    Player(int, int);
+    void Move(int ,int);
+    int GetX();
+    int GetY();
+    void Display();
+    //bool IsNeighbor();
 };
 
 #endif

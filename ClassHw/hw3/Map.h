@@ -2,20 +2,32 @@
 #define MAP_H
 
 #include <iostream>
-#include <vector>
 #include <fstream>
+#include <string>
+#include <vector>
+#include "Player.h"
+#include "Destination.h"
+//#include "Box.h"
+
 using namespace std;
 
-class Map{
+class Map {
+    int row, col;
+    vector< vector<char> > map;
+    vector< vector<char> > OriginalMap;
 public:
     Map();
-    int rows, cols;
-    vector<vector<char> > map;
-    vector< vector<char> > OriginalMap ;
-    void loadMapFromFile();
-    void saveMapToFile();
-    void printMap();
-    void resetMap();
+    void LoadMap(const string&, Player&, vector<Destination>&);  // 讀取地圖
+    void ShowMap();  // 顯示地圖
+    void Reset(Player&, vector<Destination>&);  // 重置地圖
+    char GetMap(int ,int);  // 取得地圖
+    void ChangeMap(int ,int, char);  // 設定地圖
+    int CheckNeighbor(int, int);  // 檢查周圍
+    //void Action(int, int, Player&);  // 玩家操作
+    //virtual ~Map() = default;
+    //virtual char GetSymbol() = 0;  // 每種元素的符號
+    //virtual void Display();  // 顯示地圖
+    //void Display();  // 顯示地圖，並標示玩家位置
 };
 
 #endif

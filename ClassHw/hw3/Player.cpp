@@ -1,50 +1,36 @@
 #include "Player.h"
 
-Player::Player(Map& map) {
-    // Find player's initial position
-    for (int i = 0; i < map.rows; ++i) {
-        for (int j = 0; j < map.cols; ++j) {
-            if (map.OriginalMap[i][j] == '0') {
-                PlayerX = j;
-                PlayerY = i;
-                initialPlayerX = j;
-                initialPlayerY = i;
-                break;
-            }
-        }
-    }
-    Box box(map);
-}
-
-void Player::move(Map& map, int dx, int dy){
-    newPlayerX = PlayerX + dx;
-    newPlayerY = PlayerY + dy;
-
-    if (map.map[newPlayerY][newPlayerX] == '-' || map.map[newPlayerY + dy][newPlayerX + dx] == '2') {
-        map.map[PlayerY][PlayerX] = '-';
-        map.map[newPlayerY][newPlayerX] = '0';
-        PlayerX = newPlayerX;
-        PlayerY = newPlayerY;
-    }else if(map.map[newPlayerY][newPlayerX] == '1'){
-        // Check if there is a box in front of the player
-        // If there is, move the box
-        if(map.map[newPlayerY + dy][newPlayerX + dx] == '-'){
-            push(dx, dy);
-            map.map[PlayerY][PlayerX] = '-';
-            map.map[newPlayerY][newPlayerX] = '0';
-            map.map[newPlayerY + dy][newPlayerX + dx] = '1';
-            PlayerX = newPlayerX;
-            PlayerY = newPlayerY;
-        }
-        // If there is no box, do nothing
-        // If there is a box and a wall, do nothing
-    }
-}
-
-void Player::push(int dx, int dy) {
+Player::Player(){
     
 }
 
-void Player::PrintPlayer() {
-    cout << PlayerX << " " << PlayerY << endl;
+Player::Player(int y, int x){
+    this->x = x;
+    this->y = y;
 }
+
+void Player::Move(int dx, int dy){
+    x += dx;
+    y += dy;
+}
+
+int Player::GetX(){
+    return x;
+}
+
+int Player::GetY(){
+    return y;
+}
+
+void Player::Display(){
+    cout << "Player is at (" << x << ", " << y << ")" << endl;
+}
+
+// bool Player::IsNeighbor(Box &box){
+//     for(int i = 0; i < box.GetSize(); i++){
+//         if ((box.GetX(i) == x) && (box.GetY(i) - y == 1 || box.GetY(i) - y == -1)
+//            || (box.GetY(i) == y) && (box.GetX(i) - x == 1 || box.GetX(i) - x == -1)){
+//             return 1;
+//         }
+//     }
+// }
