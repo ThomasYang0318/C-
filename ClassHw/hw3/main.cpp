@@ -136,6 +136,17 @@ int main() {
                     }
                 }
             }
+            if(map.CheckGameOver(player.GetX() + dx, player.GetY() + dy, destinations) && map.GetMap(player.GetX() + dx, player.GetY() + dy) == '1'){
+                #ifdef __APPLE__
+                system("clear"); // Clear screen //mac
+                #endif
+                #ifdef _WIN32
+                system("cls"); // Clear screen //windows
+                #endif
+                map.ShowMap();
+                cout << "Boxes can't move, game over!" << endl;
+                return 0;
+            }
         }
         else if(map.GetMap(x + dx, y + dy) == '2'){
             for(int i = 0; i < destinations.size(); i++){
@@ -175,6 +186,17 @@ int main() {
                         count++;
                     }
                 }
+            }
+            if(map.CheckGameOver(player.GetX() + dx, player.GetY() + dy, destinations) && map.GetMap(player.GetX() + dx, player.GetY() + dy) == '1'){
+                #ifdef __APPLE__
+                system("clear"); // Clear screen //mac
+                #endif
+                #ifdef _WIN32
+                system("cls"); // Clear screen //windows
+                #endif
+                map.ShowMap();
+                cout << "Boxes can't move, game over!" << endl;
+                return 0;
             }
         }
         for(int i = 0; i < destinations.size(); i++){

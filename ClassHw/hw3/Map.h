@@ -22,7 +22,7 @@ public:
     void Reset(Player&, vector<Destination>&);  // 重置地圖
     char GetMap(int ,int);  // 取得地圖
     void ChangeMap(int ,int, char);  // 設定地圖
-    int CheckNeighbor(int, int);  // 檢查周圍
+    bool CheckGameOver(int, int, vector<Destination>&);  // 檢查遊戲是否結束
     //void Action(int, int, Player&);  // 玩家操作
     //virtual ~Map() = default;
     //virtual char GetSymbol() = 0;  // 每種元素的符號

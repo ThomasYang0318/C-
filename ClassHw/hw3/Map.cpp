@@ -82,12 +82,22 @@ void Map::ChangeMap(int x, int y, char c){
     map[y][x] = c;
 }
 
-int Map::CheckNeighbor(int x, int y){
-    int count = 0;
-    do{
-        count++;
-    } while (map[y][x + 1] == '1' || map[y][x - 1] == '1' || map[y + 1][x] == '1' || map[y - 1][x] == '1');
-    return count;
+bool Map::CheckGameOver(int x, int y, vector<Destination>&destinations){
+    for(int i = 0; i < destinations.size(); i++){
+        if(destinations[i].GetX() == x && destinations[i].GetY() == y){
+            return 0;
+        }
+    }
+    if(map[y + 1][x] == '/' && map[y][x + 1] == '/' || map[y - 1][x] == '/' && map[y][x - 1] == '/' || map[y + 1][x] == '/' && map[y][x - 1] == '/' || map[y - 1][x] == '/' && map[y][x + 1] == '/'){
+        return 1;
+    }
+    else if(map[y + 1][x] == '/' && map[y - 1][x] == '/' && map[y][x - 1] || map[y + 1][x] == '/' && map[y - 1][x] == '/' && map[y][x + 1] 
+         || map[y + 1][x] == '/' && map[y][x - 1] == '/' && map[y][x + 1] || map[y - 1][x] == '/' && map[y][x - 1] == '/' && map[y][x + 1]){
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 
 void Map::Reset(Player&player, vector<Destination>&destinations) {
