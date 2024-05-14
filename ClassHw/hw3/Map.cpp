@@ -91,18 +91,14 @@ bool Map::CheckGameOver(int x, int y, vector<Destination>&destinations){
     if(map[y + 1][x] == '/' && map[y][x + 1] == '/' || map[y - 1][x] == '/' && map[y][x - 1] == '/' || map[y + 1][x] == '/' && map[y][x - 1] == '/' || map[y - 1][x] == '/' && map[y][x + 1] == '/'){
         return 1;
     }
-    else if(map[y + 1][x] == '/' && map[y - 1][x] == '/' && map[y][x - 1] || map[y + 1][x] == '/' && map[y - 1][x] == '/' && map[y][x + 1] 
-         || map[y + 1][x] == '/' && map[y][x - 1] == '/' && map[y][x + 1] || map[y - 1][x] == '/' && map[y][x - 1] == '/' && map[y][x + 1]){
-        return 1;
-    }
     else{
         return 0;
     }
 }
 
-void Map::Reset(Player&player, vector<Destination>&destinations) {
+void Map::Reset(const string& mapname, Player&player, vector<Destination>&destinations) {
     map.clear();
     player = Player();
     destinations.clear();
-    LoadMap("mission.txt", player, destinations);
+    LoadMap(mapname , player, destinations);
 }

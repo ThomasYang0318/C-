@@ -19,7 +19,7 @@ public:
     Map();
     void LoadMap(const string&, Player&, vector<Destination>&);  // 讀取地圖
     void ShowMap();  // 顯示地圖
-    void Reset(Player&, vector<Destination>&);  // 重置地圖
+    void Reset(const string&, Player&, vector<Destination>&);  // 重置地圖
     char GetMap(int ,int);  // 取得地圖
     void ChangeMap(int ,int, char);  // 設定地圖
     bool CheckGameOver(int, int, vector<Destination>&);  // 檢查遊戲是否結束

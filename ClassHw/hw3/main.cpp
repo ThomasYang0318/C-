@@ -16,8 +16,8 @@
 using namespace std;
 
 #ifdef __APPLE__
-int getch() {
-    struct termios oldattr, newattr;
+int _getch() {
+    termios oldattr, newattr;
     int ch;
     tcgetattr(STDIN_FILENO, &oldattr);
     newattr = oldattr;
@@ -33,8 +33,12 @@ int main() {
     Player player = Player();
     vector<Destination> destinations = vector<Destination>();
     //vector<Box> boxes = vector<Box> ();
+    string mapname;
+    cout << "Welcome to Sokoban!" << endl;
+    cout << "Enter the map name: ";
+    cin >> mapname;
     Map map;
-    map.LoadMap("mission.txt", player, destinations);
+    map.LoadMap(mapname, player, destinations);
 
     int count = 0;
     char input;
@@ -52,21 +56,17 @@ int main() {
         // }
 
         cout << "0 is player, 1 are boxes, 2 are destination."<< endl
+             << "--------------------------------------------" << endl
              << "Use w,a,s,d to move the player" << endl
              << "w to move up,"<< endl
              << "s to move down," << endl
              << "a to move left," << endl
              << "d to move right" << endl
              << "r to reset map" << endl
-             << "q to quit" << endl;
+             << "q to quit" << endl
+             << "--------------------------------------------" << endl;
 
-        #ifdef __APPLE__
-        input = getch(); // Get user input
-        #endif
-
-        #ifdef _WIN32
         input = _getch();
-        #endif
 
         int x = player.GetX();
         int y = player.GetY();
@@ -90,7 +90,7 @@ int main() {
                 dy = 0;
                 break;
             case 'r': // Reset map
-                map.Reset(player, destinations);
+                map.Reset(mapname, player, destinations);
                 count = 0;
                 break;
         }
