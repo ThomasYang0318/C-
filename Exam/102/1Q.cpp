@@ -4,7 +4,7 @@
 class Person{                       //4.5.
 public:
     void Person(string n, int a);   //4.5.
-    void Print();                   //7.
+    void const Print();                   //7.
 
 private:
     const string name;              //6.

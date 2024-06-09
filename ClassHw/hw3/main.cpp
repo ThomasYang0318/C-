@@ -55,7 +55,8 @@ int main() {
         //     destinations[i].Display();
         // }
 
-        cout << "0 is player, 1 are boxes, 2 are destination."<< endl
+        cout << endl << "0 is player, 1 is box, 2 is destination"<< endl
+             << "- is road, / is wall, I is box on destination" << endl
              << "--------------------------------------------" << endl
              << "Use w,a,s,d to move the player" << endl
              << "w to move up,"<< endl
@@ -145,6 +146,9 @@ int main() {
                 #endif
                 map.ShowMap();
                 cout << "Boxes can't move, game over!" << endl;
+                char input;
+                cout << "Press any key to quit" << endl;
+                input = _getch();
                 return 0;
             }
         }
@@ -196,6 +200,9 @@ int main() {
                 #endif
                 map.ShowMap();
                 cout << "Boxes can't move, game over!" << endl;
+                char input;
+                cout << "Press any key to quit" << endl;
+                input = _getch();
                 return 0;
             }
         }
@@ -228,11 +235,26 @@ int main() {
                     //     destinations[i].Display();
                     // }
                     cout << "You win!" << endl;
+                    char input;
+                    cout << "Press any key to quit" << endl;
+                    input = _getch();
                     return 0;
                 }
             }
         }
     } while (input != 'q'); // Quit when 'q' is pressed
-
+    if(input == 'q'){
+        #ifdef __APPLE__
+        system("clear"); // Clear screen //mac
+        #endif
+        #ifdef _WIN32
+        system("cls"); // Clear screen //windows
+        #endif
+        cout << "Thanks for playing!" << endl;
+        char input;
+        cout << "Press any key to quit" << endl;
+        input = _getch();
+        return 0;
+    }
     return 0;
 }

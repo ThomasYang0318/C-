@@ -17,7 +17,6 @@ void Map::LoadMap(const string& filename, Player &player, vector<Destination> &d
     }
 
     file >> row >> col;
-    cout << row << " " << col << endl;
     file.ignore();
     for (int i = 0; i < row; ++i) {
         string line;

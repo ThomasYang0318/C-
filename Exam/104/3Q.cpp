@@ -10,7 +10,7 @@ void sortpair(X &a, X &b){
 }
 
 template <typename Y>
-void sort(Y list[6]){
+void sort(Y &list){
     for(int i = 0; i < 5; i++){
         for(int j = i + 1; j < 6; j++){
             sortpair(list[i], list[j]);
@@ -19,7 +19,7 @@ void sort(Y list[6]){
 }
 
 template <typename Z>
-void print(Z list[6]){
+void print(Z &list){
     for(int i = 0; i < 6; i++){
         std::cout << list[i] << " ";
     }

@@ -29,7 +29,7 @@ public:
     int id;
 };
 
-class C : B{
+class C : B {
 public:
     C() : id(num){
         name = id;
@@ -39,12 +39,15 @@ public:
     ~C(){
         cout << "Destructor : Obj " << id << " of type C. Name is " << name << endl;
     }
+    //B b;
+    //B b2;
     int name;
     int id;
 };
 
 int main(){
-    A o1;
-    B o2;
-    B o3 = o2;
+    //A o1;
+    //B o2;
+    //B o3 = o2;
+    C o4;
 }

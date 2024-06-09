@@ -24,6 +24,7 @@ public:
         num++;
         cout << "Constructor : Obj " << id << " of type B. Name is " << name << endl;
     }
+    
     ~B(){
         cout << "Destructor : Obj " << id << " of type B. Name is " << name << endl;
     }
@@ -31,7 +32,7 @@ public:
     int name;
 };
 
-void swap1(A o1, B o2){
+inline void swap1(A o1, B o2){
     A tmp = o1;
     o1.name = o2.name;
     o2.name = tmp.name;

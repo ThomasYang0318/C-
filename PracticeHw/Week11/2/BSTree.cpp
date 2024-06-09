@@ -5,7 +5,7 @@ BinarySearchTree::BinarySearchTree(TreeNode *r){
     SetRoot(r);
 }
 
-void BinarySearchTree::SetRoot(TreeNode* r){
+void BinarySearchTree::SetRoot(TreeNode *r){
     root = r;
 }
 
